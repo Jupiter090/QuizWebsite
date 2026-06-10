@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz Not Found!</title>
+    <link rel="stylesheet" href="quiz/quiz.css" />
+    <link rel="stylesheet" href="navigation.css" />
+    <link rel="stylesheet" href="message/message.css" />
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="hamburger" onclick="onHamburgerClick()">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+      </div>
+      <form class="join-quiz">
+        <p>Enter Quiz ID</p>
+        <div class="join-quiz-input">
+          <p>#</p>
+          <input type="text" maxlength="6" id="publicQuizId" />
+        </div>
+        <p class="quiz-id-not-found">Quiz with this ID wasn't found!</p>
+        <button onclick="onStartQuizButtonClick()">Start Quiz</button>
+        <button class="create-new-quiz-button" onclick="onCreateNewQuiz()">
+          Create new quiz
+        </button>
+      </form>
+    </nav>
+
+    <main class="quiz-section">
+      <div class="quiz-found">
+        <div class="quiz-information">
+          <h1 class="section-title" id="quiz-title">QuizTitle</h1>
+          <p class="section-subtitle" id="quiz-description">QuizDescription</p>
+        </div>
+        <div class="section" id="question-section">
+          <h1 class="section-title">Questions</h1>
+        </div>
+        <button class="submit-button" onclick="openConfirmationMenu()">
+          Submit
+        </button>
+        <p class="results-text">Result: 90% - 9/10</p>
+        <p class="quiz-id">QuizId</p>
+      </div>
+      <div class="quiz-not-found">
+        <h1>Quiz with an id of #<span id="quizId">ID</span> wasn't found!</h1>
+        <button>Return home</button>
+      </div>
+    </main>
+
+    <div class="message-div">
+      <div class="message-box">
+        <p class="confirmation-text">
+          Are you sure you want to submit these answers?
+        </p>
+        <div class="row row-phone">
+          <button class="agree-button" onclick="onSubmitAnswersClick()">
+            Continue
+          </button>
+          <button class="reject-button" onclick="closeConfirmationMenu()">
+            Go back
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <template id="question-template"
+      ><div class="question">
+        <p class="question-title">1. question</p>
+        <div class="answers">
+          <div class="row answer">
+            <input type="radio" class="question-checkbox" id="answer" />
+            <p class="answer-text" id="answer">Answer1</p>
+          </div>
+          <div class="row answer">
+            <input type="radio" class="question-checkbox" id="answer" />
+            <p class="answer-text" id="answer">Answer2</p>
+          </div>
+          <div class="row answer">
+            <input type="radio" class="question-checkbox" id="answer" />
+            <p class="answer-text" id="answer">Answer3</p>
+          </div>
+          <div class="row answer">
+            <input type="radio" class="question-checkbox" id="answer" />
+            <p class="answer-text" id="answer">Answer4</p>
+          </div>
+        </div>
+      </div></template
+    >
+
+    <script src="apiIp.js"></script>
+    <script src="navigation/navigationButtons.js"></script>
+    <script src="quiz/getQuiz.js"></script>
+    <script src="quiz/answerManager.js" id="answer-manager"></script>
+    <script src="mainPage/hamburgerMenu.js"></script>
+    <script src="navigation/startQuiz.js"></script>
+    <script src="navigation/maxLenghtInInput.js"></script>
+    <script src="quiz/submitAnswers.js"></script>
+  </body>
+</html>

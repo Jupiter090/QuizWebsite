@@ -1,0 +1,243 @@
+.message-div {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.555);
+  z-index: 2;
+  justify-content: center;
+  align-items: center;
+
+  transition: display 0.1s ease-in-out;
+}
+
+.message-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  height: 20rem;
+  background-color: rgb(34, 34, 39);
+
+  border-style: solid;
+  border-color: rgb(59, 59, 68);
+  border-radius: 5px;
+  gap: 0;
+}
+.checkmark {
+  color: rgb(11, 189, 11);
+  font-size: 5rem;
+  padding: 0 0.25em 0 0.25em;
+
+  border-width: 0.5rem;
+  border-style: solid;
+  border-radius: 100%;
+  margin: 0;
+  margin-bottom: 1.5rem;
+}
+.message-box p {
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin: 0;
+}
+.message-box a {
+  color: rgb(93, 93, 107);
+  text-decoration: underline;
+}
+.copy-link-button {
+  background-color: #1c64b6;
+  color: white;
+  border-style: none;
+  width: 8rem;
+  height: 2rem;
+  font-size: 1rem;
+  font-weight: bolder;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 0.5em #0a5dbd;
+  transition:
+    background-color 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out;
+}
+.copy-link-button:hover {
+  box-shadow: 0 0 0.75em #0a5dbd;
+  cursor: pointer;
+}
+.copy-link-button:active {
+  background: #1f76da;
+  box-shadow: 0 0 1em #0a5dbd;
+}
+.close-button {
+  margin-left: auto;
+  margin-right: 0.5em;
+  margin-top: -0.5em;
+  color: rgb(252, 61, 61);
+  background-color: rgba(240, 248, 255, 0);
+  border-style: none;
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 2rem;
+  border-radius: 15%;
+  font-weight: bold;
+
+  transition:
+    background-color 0.3s ease-in-out,
+    color 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out;
+}
+.close-button:hover {
+  background-color: rgb(252, 59, 59);
+  box-shadow: 0 0 10px rgb(252, 61, 61);
+  color: white;
+  cursor: pointer;
+}
+.close-button:active {
+  background-color: rgb(255, 25, 25);
+}
+.agree-button {
+  height: 5rem;
+  width: 13rem;
+  align-self: flex-start;
+  margin-right: 1rem;
+
+  border-radius: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: bolder;
+  background: #09c929;
+  color: white;
+  border-style: none;
+
+  box-shadow: 0 0 0.5em #09c929;
+  transition:
+    background-color 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out;
+}
+.message-box .confirmation-text {
+  font-size: 2rem;
+  margin-bottom: auto;
+  margin-top: 5rem;
+  text-align: center;
+}
+
+.agree-button:hover {
+  box-shadow: 0 0 0.75em #09c929;
+  cursor: pointer;
+}
+.agree-button:active {
+  box-shadow: 0 0 1em #09c929;
+  background: #0de631;
+  cursor: pointer;
+}
+
+.reject-button {
+  height: 5rem;
+  width: 13rem;
+  align-self: flex-start;
+  margin-bottom: 5rem;
+  margin-left: 1rem;
+
+  border-radius: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: bolder;
+  background: rgb(252, 61, 61);
+  color: white;
+  border-style: none;
+
+  box-shadow: 0 0 0.5em #fc3d3d;
+  transition:
+    background-color 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out;
+}
+.reject-button:hover {
+  box-shadow: 0 0 0.75em rgb(252, 61, 61);
+  cursor: pointer;
+}
+.reject-button:active {
+  box-shadow: 0 0 1em rgb(252, 61, 61);
+  background: rgb(255, 25, 25);
+  cursor: pointer;
+}
+#delete-message .message-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+#delete-message .message-box p {
+  font-size: 2rem;
+}
+#delete-message .message-box .row {
+  width: 100%;
+  justify-content: space-evenly;
+}
+.delete-message-button {
+  width: 10rem;
+  height: 3rem;
+  border-style: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out;
+}
+.delete-message-delete-button {
+  color: white;
+  background: #fc3d3d;
+  box-shadow: 0 0 0.5rem #fc3d3d;
+}
+.delete-message-delete-button:hover {
+  box-shadow: 0 0 0.75rem #fc3d3d;
+}
+.delete-message-delete-button:active {
+  box-shadow: 0 0 1rem #f84a4a;
+  background: #f84a4a;
+}
+.delete-message-close-button {
+  background: #0a5dbd;
+  color: white;
+  box-shadow: 0 0 0.5rem #0a5dbd;
+}
+.delete-message-close-button:hover {
+  box-shadow: 0 0 0.75rem #0a5dbd;
+}
+.delete-message-close-button:active {
+  box-shadow: 0 0 1rem #1f76da;
+  background: #1f76da;
+}
+@media (max-width: 600px) {
+  .checkmark {
+    font-size: 3rem;
+  }
+  .message-box {
+    width: 90%;
+  }
+  .message-box p {
+    font-weight: bold;
+    font-size: 1rem;
+    margin: 0;
+    text-align: center;
+  }
+  .row-phone {
+    flex-direction: column;
+  }
+  .message-box a {
+    display: flex;
+    text-align: center;
+    color: rgb(93, 93, 107);
+    text-decoration: underline;
+    width: 100%;
+    overflow-wrap: anywhere;
+  }
+  .reject-button {
+    margin-left: 0;
+    height: 4rem;
+  }
+  .agree-button {
+    margin-top: 0.5rem;
+    margin-right: 0;
+    height: 4rem;
+    margin-bottom: 1rem;
+  }
+}
