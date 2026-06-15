@@ -1,6 +1,6 @@
 let answersToSubmit = [];
 const answerManager = document.querySelector("#answer-manager");
-const confimartionMenu = document.querySelector(".message-div");
+const confimartionMenu = document.querySelector("#confirmation-menu");
 const submitButton = document.querySelector(".submit-button");
 const resultTxt = document.querySelector(".results-text");
 
@@ -41,6 +41,7 @@ function onSubmitAnswersClick() {
 }
 
 async function sendAnswers() {
+  showMessageBox();
   const response = await fetch(
     window.apiIp + "/api/Quiz/checkQuiz?quizId=" + window.id,
     {
@@ -52,6 +53,12 @@ async function sendAnswers() {
     },
   );
 
+  if (!response.ok) {
+    messageUnsuccessful();
+    return;
+  }
+
+  closeMessageBox();
   const result = await response.json();
   console.log(result);
   showResults(result);

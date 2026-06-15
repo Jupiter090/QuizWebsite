@@ -22,15 +22,25 @@ function onLoad() {
 }
 
 async function getQuiz() {
+  showMessageBox();
   const response = await fetch(
     window.apiIp + "/api/Quiz/getquiz?publicid=" + publicId,
+    { headers: { "ngrok-skip-browser-warning": "1" } },
   );
 
   if (!response.ok) {
     quizNotFound.style.display = "flex";
     idOfQuiz.innerHTML = publicId;
+    messageUnsuccessful();
     return;
   }
+  if ((await response.status) == 429) {
+    quizNotFound.style.display = "flex";
+    quizFound.innerHTML = "Too many quiz requests!";
+    messageUnsuccessful();
+    return;
+  }
+  closeMessageBox();
   quizFound.style.display = "flex";
   quiz = await response.json();
 

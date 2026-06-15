@@ -4,8 +4,11 @@ const questionSection = document.getElementById("question-section");
 let questions = [];
 window.questionsOfQuiz = questions;
 window.getAnswers = getAllQuestionsAnswers;
+if (window.nextQuestionId != undefined) id = window.nextQuestionId;
+window.nextQuestionId = id;
 
 function createQuestion() {
+  id = window.nextQuestionId;
   const wrapper = questionTemplate.content.cloneNode(true);
   const questionElements = wrapper.querySelector(".question");
 
@@ -42,6 +45,7 @@ function createQuestion() {
   window.questionsOfQuiz = questions;
   questionSection.appendChild(questionElements);
   id++;
+  window.nextQuestionId = id;
 }
 
 function removeQuestion(idOfQuestion) {

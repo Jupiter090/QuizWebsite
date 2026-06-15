@@ -27,6 +27,9 @@
         </div>
         <p class="quiz-id-not-found">Quiz with this ID wasn't found!</p>
         <button onclick="onStartQuizButtonClick()">Start Quiz</button>
+        <button class="create-new-quiz-button" onclick="onCreateNewQuiz()">
+          Create new quiz
+        </button>
       </form>
 
       <p class="my-quizes-title">My Quizes</p>
@@ -44,42 +47,48 @@
         </p>
       </div>
 
-      <button class="publish-button" onclick="onPublishQuizClick()">
+      <button class="publish-button" onclick="onPublishQuizClick(true)">
         Publish Quiz
       </button>
     </nav>
 
     <main class="create-quiz-section">
-      <div class="page-title-section">
-        <h1 class="section-title">Create a quiz</h1>
-        <p class="section-subtitle">
-          Give your quiz name, description and add questions.
-        </p>
+      <div class="quiz-not-found">
+        <h1>Quiz not found!</h1>
+        <button onclick="window.location.href = '/'">Return home</button>
       </div>
+      <div class="quiz-found">
+        <div class="page-title-section">
+          <h1 class="section-title">Create a quiz</h1>
+          <p class="section-subtitle">
+            Give your quiz name, description and add questions.
+          </p>
+        </div>
 
-      <div class="section">
-        <h2 class="section-title">Details</h2>
-        <h3 class="quiz-details-text">Title</h3>
-        <input
-          type="text"
-          id="quizTitle"
-          placeholder="Enter name of your quiz..."
-        />
+        <div class="section">
+          <h2 class="section-title">Details</h2>
+          <h3 class="quiz-details-text">Title</h3>
+          <input
+            type="text"
+            id="quizTitle"
+            placeholder="Enter name of your quiz..."
+          />
 
-        <h3 class="quiz-details-text">Description</h3>
-        <input
-          type="text"
-          id="quizDescription"
-          placeholder="(Optional) Describe your quiz..."
-        />
-      </div>
+          <h3 class="quiz-details-text">Description</h3>
+          <input
+            type="text"
+            id="quizDescription"
+            placeholder="(Optional) Describe your quiz..."
+          />
+        </div>
 
-      <div class="section" id="question-section" style="margin-top: 0.25rem">
-        <div class="row">
-          <h2 class="section-title">Questions</h2>
-          <button class="question-button" onclick="createQuestion()">
-            New Question
-          </button>
+        <div class="section" id="question-section" style="margin-top: 0.25rem">
+          <div class="row">
+            <h2 class="section-title">Questions</h2>
+            <button class="question-button" onclick="createQuestion()">
+              New Question
+            </button>
+          </div>
         </div>
       </div>
     </main>
@@ -216,6 +225,7 @@
 
     <script src="apiIp.js"></script>
     <script src="message/message.js"></script>
+    <script src="editQuiz/loadEditQuizPage.js"></script>
     <script src="quizSaveSystem/saveSystem.js"></script>
     <script src="mainPage/questionManager.js"></script>
     <script src="mainPage/quizSender.js"></script>

@@ -1,3 +1,3 @@
-const apiIp = "http://10.1.14.72:5082";
+const apiIp = "https://quizwebapi-final.onrender.com";
 
 window.apiIp = apiIp;

@@ -2,9 +2,13 @@ let quizQuestions = [];
 const messageBox = document.querySelector(".message-div");
 let link = "";
 
-async function onPublishQuizClick() {
+async function onPublishQuizClick(isEdit = false) {
   quiz = await createQuizObject();
   if (quiz === null) return;
+  if (isEdit) {
+    sendEditedQuiz(quiz);
+    return;
+  }
   await sendQuiz(quiz);
 }
 
@@ -90,53 +94,83 @@ function createQuizObject() {
   return quiz;
 }
 async function sendQuiz(quiz) {
+  showMessageBox();
   const response = await fetch(window.apiIp + "/api/Quiz", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      publicid: "",
+      publicID: "",
       editID: "",
       quizName: quiz.quizTitle,
       quizDescription: quiz.quizDescription,
       questions: quiz.questions,
     }),
   });
-
-  if (!response.ok) {
-    console.log("There was a problem trying to create new quiz!");
-  }
   const result = await response.json();
-  console.log(result);
-  showMessageBox(result);
+
+  if (response.status != 200) {
+    messageUnsuccessful();
+    console.log("There was a problem trying to create new quiz!");
+    return;
+  }
+
+  messageSuccessful();
 
   const date = new Date();
   const quizToSave = new savedQuizes();
   quizToSave.name = quiz.quizTitle;
   quizToSave.publicId = result.id;
+  quizToSave.editId = result.editId;
   quizToSave.timeCreated = `${String(date.getDate()).padStart(2, "0")}/${String(date.getMonth() + 1).padStart(2, "0")}/${date.getFullYear()} - ${String(date.getHours()).padStart(2, "0")}:${String(date.getMinutes()).padStart(2, "0")}`;
 
+  console.log(result.editId);
+  console.log(quizToSave);
   window.saveQuizesToStorage(quizToSave);
-
-  return;
+  showQuizInfo(result);
 }
 
-function showMessageBox(response) {
-  messageBox.style.display = "flex";
-  messageBox.querySelector("#id-text").innerHTML =
-    "ID: #" + response.id.toLowerCase();
-  link = "/quiz.html?id=" + response.id.toLowerCase();
-  messageBox.querySelector("#link-text").innerHTML =
-    "Link: <a target='_blank' href='" +
-    link +
-    "'>" +
-    window.location.host +
-    link +
-    "</a>";
-}
-function closeMessageBox() {
-  messageBox.style.display = "none";
+async function sendEditedQuiz(quiz) {
+  showMessageBox();
+
+  const editId = new URLSearchParams(window.location.search).get("editId");
+  const response = await fetch(
+    window.apiIp + "/api/Quiz/editQuiz?editId=" + editId,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        publicId: "",
+        editId: editId,
+        quizName: quiz.quizTitle,
+        quizDescription: quiz.quizDescription,
+        questions: quiz.questions,
+      }),
+    },
+  );
+
+  if (response.status != 200) {
+    messageUnsuccessful();
+    console.log("There was a problem trying to edit new quiz!");
+    return;
+  }
+
+  messageSuccessful();
+  const result = await response.json();
+  const date = new Date();
+  const quizToSave = new savedQuizes();
+  quizToSave.name = quiz.quizTitle;
+  quizToSave.publicId = result.publicId;
+  quizToSave.editId = editId;
+  quizToSave.timeCreated = `${String(date.getDate()).padStart(2, "0")}/${String(date.getMonth() + 1).padStart(2, "0")}/${date.getFullYear()} - ${String(date.getHours()).padStart(2, "0")}:${String(date.getMinutes()).padStart(2, "0")}`;
+
+  console.log(result);
+  showQuizInfo({ id: result.publicId, editId: editId });
+
+  window.editQuiz(quizToSave);
 }
 function onCopyLinkClick() {
   const copyBtn = messageBox.querySelector(".copy-link-button");
@@ -156,6 +190,8 @@ class Quiz {
 }
 
 class QuizQuestion {
+  id = 0;
+  publicQuizId = "";
   questionId = 0;
   questionTitle = "";
   answers = [];

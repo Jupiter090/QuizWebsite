@@ -4,6 +4,11 @@
 *::after {
   box-sizing: border-box;
 }
+
+:root {
+  --join-quiz-blur-show: flex;
+}
+
 nav {
   display: flex;
   position: fixed;
@@ -170,15 +175,16 @@ nav button {
 }
 .join-quiz .create-new-quiz-button:hover {
   box-shadow: none;
+  opacity: 95%;
 }
 .join-quiz .create-new-quiz-button::after {
   position: absolute;
+  display: var(--join-quiz-blur-show);
   content: "";
   background: linear-gradient(90deg, #0a5dbd, #0aa8bd, #05c494);
   filter: blur(0.5em);
   z-index: -1;
 
-  background: lin;
   width: 100%;
   height: 100%;
   inset: 0em;
@@ -186,9 +192,6 @@ nav button {
 }
 .join-quiz .create-new-quiz-button:hover::after {
   filter: blur(1em);
-}
-.join-quiz .create-new-quiz-button:hover {
-  opacity: 95%;
 }
 .join-quiz .create-new-quiz-button:active {
   background: linear-gradient(90deg, #0a5dbd, #05c494);
@@ -246,6 +249,7 @@ My Quizes
   border-radius: 0.5rem;
   margin-right: 0.25rem;
   padding-left: 0.25rem;
+  padding-bottom: 0.25rem;
 }
 .quiz-container p {
   margin: 0;
@@ -292,6 +296,7 @@ My Quizes
   height: 2rem;
   border-radius: 0.25rem;
   margin-left: auto;
+  margin-right: 0.5rem;
   cursor: pointer;
   justify-self: center;
 
@@ -307,7 +312,25 @@ My Quizes
   background: #1f6fca;
   box-shadow: 0 0 1rem #1f6fca;
 }
+.quiz-container-edit-button {
+  background-color: #09c929;
+  box-shadow: 0 0 0.5em #09c929;
+  cursor: pointer;
 
+  width: calc(100% - 0.5rem);
+  height: 2rem;
+
+  transition:
+    box-shadow 0.3s ease-in-out,
+    background-color 0.3s ease-in-out;
+}
+.quiz-container-edit-button:hover {
+  box-shadow: 0 0 0.75em #09c929;
+}
+.quiz-container-edit-button:active {
+  box-shadow: 0 0 0.75em #0de631;
+  background: #0de631;
+}
 @media (max-width: 600px) {
   nav {
     display: flex;
@@ -328,6 +351,9 @@ My Quizes
   }
   .join-quiz button {
     box-shadow: 0 0 0;
+  }
+  :root {
+    --join-quiz-blur-show: none;
   }
 }
 @media (max-width: 900px) and (min-width: 600px) {

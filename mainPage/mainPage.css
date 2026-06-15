@@ -213,6 +213,43 @@ input[type="text"]:focus {
   margin: 0;
 }
 
+/*-------------
+QUIZ NOT FOUND
+---------------*/
+.quiz-found {
+  display: none;
+  flex-direction: column;
+}
+.quiz-not-found {
+  height: 50vh;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.quiz-not-found h1 {
+  font-size: 3rem;
+  color: rgb(252, 61, 61);
+  text-shadow: 0 0 1rem rgba(252, 61, 61, 0.493);
+}
+.quiz-not-found button {
+  width: 12rem;
+  height: 3rem;
+  background: #1c64b6;
+  box-shadow: 0 0 0.5em #0a5dbd;
+  border: none;
+
+  border-radius: 0.5rem;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bolder;
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out;
+}
+
 @media (max-width: 600px) {
   input[type="text"] {
     font-size: 1rem;

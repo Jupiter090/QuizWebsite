@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="quiz/quiz.css" />
     <link rel="stylesheet" href="navigation.css" />
     <link rel="stylesheet" href="message/message.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
   </head>
   <body>
     <nav class="nav">
@@ -27,6 +31,21 @@
           Create new quiz
         </button>
       </form>
+
+      <p class="my-quizes-title">My Quizes</p>
+      <div class="my-quizes">
+        <p
+          style="
+            color: #a3a3a3;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+          "
+          id="no-quizes-loaded"
+        >
+          No quizes yet :(
+        </p>
+      </div>
     </nav>
 
     <main class="quiz-section">
@@ -46,11 +65,57 @@
       </div>
       <div class="quiz-not-found">
         <h1>Quiz with an id of #<span id="quizId">ID</span> wasn't found!</h1>
-        <button>Return home</button>
+        <button onclick="window.location.href = '/'">Return home</button>
       </div>
     </main>
 
-    <div class="message-div">
+    <div class="message-div" style="display: none">
+      <div class="message-box">
+        <div class="spinning-circle"></div>
+
+        <div id="sending-message" style="display: none">
+          <p>Please wait</p>
+          <p id="sending-text">Processing your request</p>
+        </div>
+
+        <div id="delete-message-confirmation" style="display: none">
+          <p>Your quiz was succesfully deleted!</p>
+          <button class="close-button" onclick="closeMessageBox()">
+            Close
+          </button>
+        </div>
+
+        <div class="unsuccessful-message" style="display: none">
+          <p>We are sorry!</p>
+          <p>Something went wrong</p>
+          <button class="close-button" onclick="closeMessageBox()">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="message-div" id="delete-message">
+      <div class="message-box">
+        <p>Are you sure you want to delete this quiz?</p>
+        <div class="row row-phone">
+          <button
+            class="delete-message-button delete-message-delete-button"
+            onclick="deleteQuiz()"
+          >
+            Yes, delete
+          </button>
+          <button
+            class="delete-message-button delete-message-close-button"
+            onclick="onBackButtonClick()"
+          >
+            No, go back
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="message-div" id="confirmation-menu">
       <div class="message-box">
         <p class="confirmation-text">
           Are you sure you want to submit these answers?
@@ -90,8 +155,35 @@
       </div></template
     >
 
+    <template id="my-quizes-container-template">
+      <div class="quiz-container">
+        <div class="row">
+          <p class="quiz-container-name">QuizName</p>
+          <button class="quiz-container-delete-button">
+            <i class="fa fa-trash-o"></i>
+          </button>
+        </div>
+        <p class="quiz-container-edit">LastEdited</p>
+        <div class="row">
+          <p class="quiz-container-id">ID</p>
+          <button class="quiz-container-copy-button">CopyLink</button>
+        </div>
+        <div>
+          <p
+            class="quiz-container-id quiz-container-editid"
+            style="font-size: 0.9rem"
+          >
+            EditID
+          </p>
+          <button class="quiz-container-edit-button">Edit</button>
+        </div>
+      </div></template
+    >
+
     <script src="apiIp.js"></script>
+    <script src="message/message.js"></script>
     <script src="navigation/navigationButtons.js"></script>
+    <script src="quizSaveSystem/saveSystem.js"></script>
     <script src="quiz/getQuiz.js"></script>
     <script src="quiz/answerManager.js" id="answer-manager"></script>
     <script src="mainPage/hamburgerMenu.js"></script>

@@ -15,10 +15,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   width: 80%;
-  height: 20rem;
+  height: 60%;
   background-color: rgb(34, 34, 39);
+  padding-bottom: 1rem;
+  padding-top: 1rem;
 
   border-style: solid;
   border-color: rgb(59, 59, 68);
@@ -45,54 +47,89 @@
   color: rgb(93, 93, 107);
   text-decoration: underline;
 }
-.copy-link-button {
-  background-color: #1c64b6;
-  color: white;
-  border-style: none;
-  width: 8rem;
-  height: 2rem;
+.message-box button {
+  width: 10rem;
+  height: 3rem;
   font-size: 1rem;
   font-weight: bolder;
   border-radius: 0.5rem;
-  box-shadow: 0 0 0.5em #0a5dbd;
+  border-style: none;
+  cursor: pointer;
+
   transition:
     background-color 0.3s ease-in-out,
     box-shadow 0.3s ease-in-out;
 }
+.copy-link-button {
+  background-color: #1c64b6;
+  color: white;
+
+  box-shadow: 0 0 0.5em #0a5dbd;
+}
 .copy-link-button:hover {
   box-shadow: 0 0 0.75em #0a5dbd;
-  cursor: pointer;
 }
 .copy-link-button:active {
   background: #1f76da;
   box-shadow: 0 0 1em #0a5dbd;
 }
-.close-button {
-  margin-left: auto;
-  margin-right: 0.5em;
-  margin-top: -0.5em;
-  color: rgb(252, 61, 61);
-  background-color: rgba(240, 248, 255, 0);
+.edit-quiz-button {
+  background: #09c929;
+  color: white;
+  box-shadow: 0 0 0.5em #09c929;
+}
+.edit-quiz-button:hover {
+  box-shadow: 0 0 0.75em #09c929;
+}
+.edit-quiz-button:active {
+  background-color: #0de631;
+  box-shadow: 0 0 1em #0de631;
+}
+.new-quiz-button {
+  background: linear-gradient(90deg, #0a5dbd, #0aa8bd, #05c494);
+  position: relative;
+  color: white;
+  z-index: 0;
+}
+.new-quiz-button::after {
+  position: absolute;
+  content: "";
+  background: linear-gradient(90deg, #0a5dbd, #0aa8bd, #05c494);
+  filter: blur(0.25em);
+  z-index: -1;
+
+  inset: 0em;
+  transition: filter 0.3s ease-in-out;
+}
+.new-quiz-button:hover::after {
+  filter: blur(0.5em);
+}
+.new-quiz-button:active {
+  background: linear-gradient(90deg, #0a5dbd, #05c494);
+}
+.new-quiz-button:active::after {
+  filter: blur(0.75em);
+}
+
+.message-box .close-button {
+  color: white;
+  background: #fc3d3d;
+  box-shadow: 0 0 0.5rem #fc3d3d;
+
   border-style: none;
-  width: 2.5rem;
-  height: 2.5rem;
   font-size: 2rem;
-  border-radius: 15%;
+  border-radius: 0.5rem;
   font-weight: bold;
 
-  transition:
-    background-color 0.3s ease-in-out,
-    color 0.3s ease-in-out,
-    box-shadow 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out box-shadow 0.3s ease-in-out;
 }
 .close-button:hover {
-  background-color: rgb(252, 59, 59);
-  box-shadow: 0 0 10px rgb(252, 61, 61);
-  color: white;
+  box-shadow: 0 0 0.75rem #fc3d3d;
   cursor: pointer;
 }
 .close-button:active {
-  background-color: rgb(255, 25, 25);
+  background-color: #ff1919;
+  box-shadow: 0 0 1rem #ff1919;
 }
 .agree-button {
   height: 5rem;
@@ -157,6 +194,9 @@
   background: rgb(255, 25, 25);
   cursor: pointer;
 }
+
+/*Delete message*/
+
 #delete-message .message-box {
   display: flex;
   flex-direction: column;
@@ -205,6 +245,107 @@
 .delete-message-close-button:active {
   box-shadow: 0 0 1rem #1f76da;
   background: #1f76da;
+}
+
+/*Loading message*/
+
+.message-box #sending-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.spinning-circle {
+  position: relative;
+  width: 10rem;
+  height: 5rem;
+  margin-bottom: 5rem;
+
+  border-top-left-radius: 11rem;
+  border-top-right-radius: 11rem;
+
+  border: #3b3b44 solid 1rem;
+  transform-origin: center bottom;
+  border-bottom: 0;
+
+  animation: spinningAnim 1s cubic-bezier(0.35, 0.1, 0.61, 0.89) infinite;
+  transition:
+    border-color 0.3s ease-in-out,
+    animation 0.3s ease-in-out,
+    border-bottom 0.3s ease-in-out,
+    height 0.15s ease-in-out;
+
+  /*Text*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 5rem;
+}
+.stop-animation {
+  animation: none;
+  border-bottom: 1rem solid;
+  height: 10rem;
+  border-radius: 50%;
+  margin: 0;
+}
+#sending-text::after {
+  animation: text 3s infinite;
+  content: "";
+}
+
+/*Publish message */
+#publish-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+/*Delete confirmation message*/
+.message-box #delete-message-confirmation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/*Unsuccessful message*/
+.message-box .unsuccessful-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 40%;
+  justify-content: space-around;
+}
+
+@keyframes text {
+  0%,
+  25% {
+    content: "";
+  }
+  26%,
+  50% {
+    content: ".";
+  }
+  51%,
+  75% {
+    content: "..";
+  }
+  76%,
+  100% {
+    content: "...";
+  }
+}
+
+@keyframes spinningAnim {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.red {
+  color: #fc3d3d;
 }
 @media (max-width: 600px) {
   .checkmark {
