@@ -15,7 +15,7 @@ function onLoad() {
 async function getQuiz(editId) {
   showMessageBox();
   const response = await fetch(
-    window.apiIp + "/api/Quiz/getQuiz?editId=" + editId,
+    window.apiIp + "/api/Quiz/getquiz?editId=" + editId,
   );
 
   if (!response.ok) {
