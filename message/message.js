@@ -56,7 +56,7 @@ function showQuizInfo(response) {
   messageBox
     .querySelector(".edit-quiz-button")
     .addEventListener("click", (e) => {
-      window.location.replace("/editQuiz.html?editId=" + response.editId);
+      window.location.replace("/editquiz.html?editId=" + response.editId);
     });
   messageBox
     .querySelector(".new-quiz-button")
