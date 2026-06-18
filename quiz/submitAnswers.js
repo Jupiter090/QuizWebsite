@@ -58,7 +58,6 @@ async function sendAnswers() {
     return;
   }
 
-  closeMessageBox();
   const result = await response.json();
   console.log(result);
   showResults(result);

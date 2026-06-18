@@ -47,18 +47,18 @@ function createQuizObject() {
     const question = new QuizQuestion();
     question.questionId = q.id;
     if (q.correctAnswer == -1) {
-      document.querySelector(`[data-id='${q.id}']`).style.borderColor =
+      document.querySelector(`[data-id='${q.id}'].question`).style.borderColor =
         "#fc3d3d";
       isValid = false;
     } else {
-      document.querySelector(`[data-id='${q.id}']`).style.borderColor =
+      document.querySelector(`[data-id='${q.id}'].question`).style.borderColor =
         "#32323f";
     }
     question.correctAnswer = q.correctAnswer;
 
     //Checks if for every question user has inputed a title for the question
     const questionTitleInput = document
-      .querySelector(`[data-id='${q.id}']`)
+      .querySelector(`[data-id='${q.id}'].question`)
       .querySelector("#question-title");
     if (q.questionTitle == "") {
       isValid = false;
@@ -71,7 +71,7 @@ function createQuizObject() {
     //Resets all of the answer's input field to the normal color
     q.questionAnswers.forEach((ans, index) => {
       document
-        .querySelector(`[data-id='${q.id}']`)
+        .querySelector(`[data-id='${q.id}'].question`)
         .querySelector(`[data-id='${q.id.toString() + index}']`)
         .querySelector("#question-answer").style.borderColor = "#32323f";
     });
@@ -80,7 +80,7 @@ function createQuizObject() {
     if (q.questionAnswers.includes("")) {
       const index = q.questionAnswers.findIndex((a) => a == "");
       document
-        .querySelector(`[data-id='${q.id}']`)
+        .querySelector(`[data-id='${q.id}'].question`)
         .querySelector(`[data-id='${q.id.toString() + index}']`)
         .querySelector("#question-answer").style.borderColor = "#fc3d3d";
       isValid = false;

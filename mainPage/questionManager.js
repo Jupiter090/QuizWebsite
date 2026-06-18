@@ -51,7 +51,7 @@ function createQuestion() {
 function removeQuestion(idOfQuestion) {
   questions = questions.filter((q) => q.id != idOfQuestion);
   window.questionsOfQuiz = questions;
-  document.querySelector(`[data-id='${idOfQuestion}']`).remove();
+  document.querySelector(`[data-id='${idOfQuestion}'].question`).remove();
 
   document.querySelectorAll(".question").forEach((el) => {
     const questionId = el.dataset.id;
@@ -89,7 +89,7 @@ document.addEventListener("click", (e) => {
 function getAllQuestionsAnswers() {
   questions.forEach((question) => {
     const id = question.id;
-    const questionDiv = document.querySelector(`[data-id='${id}']`);
+    const questionDiv = document.querySelector(`[data-id='${id}'].question`);
 
     question.questionTitle = questionDiv.querySelector("#question-title").value;
     questionDiv
