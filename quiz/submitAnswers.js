@@ -58,6 +58,7 @@ async function sendAnswers() {
     return;
   }
 
+  messageSuccessful();
   const result = await response.json();
   console.log(result);
   showResults(result);
