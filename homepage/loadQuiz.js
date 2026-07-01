@@ -1,0 +1,26 @@
+const idInput = document.querySelector("input");
+const loadingScreen = document.querySelector(".loading-screen");
+
+idInput.addEventListener("input", (e) => {
+  if (idInput.value.length > 6) idInput.value = idInput.value.slice(0, -1);
+});
+
+async function loadQuiz() {
+  loadingScreen.style.display = "flex";
+  if (idInput.value.length < 6) return;
+  const response = await fetch(
+    window.apiIp +
+      "/api/Quiz/getquiz?publicId=" +
+      idInput.value +
+      "&checkIfQuizExists=true",
+  );
+
+  if (response.status == "404" || response.status == "400") {
+    document.querySelector(".not-found-text").style.display = "block";
+    document.querySelector(".id-form").style.boxShadow = "0 0 15px #f42b2b";
+  } else {
+    window.location.href = "quiz.html?id=" + idInput.value;
+  }
+
+  loadingScreen.style.display = "none";
+}
