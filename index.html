@@ -6,10 +6,7 @@
     <title>Quizzes by Matej Planeta</title>
 
     <link rel="stylesheet" href="homepage/homepage.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
+    <link rel="icon" type="image/x-icon" href="/images/favicon.png" />
 
     <meta
       name="description"
@@ -29,6 +26,7 @@
       content="https://quizwebsite.quizcreator.workers.dev"
     />
     <meta property="og:type" content="website" />
+    <meta property="og:type" content="website" />
   </head>
   <body>
     <main>
@@ -36,15 +34,29 @@
         <h1>Quizzes</h1>
         <h2>By Matej Planeta</h2>
         <div class="quiz-app">
+          <form>
+            <p>Enter Edit Id</p>
+            <div class="id-form" id="edit-id-input">
+              <input />
+            </div>
+            <p class="not-found-text" id="edit-id">
+              Quiz with this ID not found!
+            </p>
+            <a class="edit-quiz-button" onclick="editQuiz()">Edit Quiz</a>
+          </form>
+
           <a href="/createquiz.html">Create new quiz</a>
+
           <form>
             <p>Enter Quiz Id</p>
-            <div class="id-form">
+            <div class="id-form" id="quiz-id-input">
               <p>#</p>
               <input />
             </div>
-            <p class="not-found-text">Quiz with this ID not found!</p>
-            <a class="start-quiz-button" onclick="loadQuiz()">Start Quiz</a>
+            <p class="not-found-text" id="quiz-id">
+              Quiz with this ID not found!
+            </p>
+            <a class="start-quiz-button" onclick="editQuiz()">Start Quiz</a>
           </form>
         </div>
       </div>

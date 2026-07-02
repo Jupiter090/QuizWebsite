@@ -7,7 +7,7 @@ const questionEditSection = document.querySelector("#question-section");
 document.addEventListener("load", onLoad());
 
 function onLoad() {
-  const editId = params.get("editId");
+  const editId = params.get("editid");
   if (editId == "") return;
   getQuiz(editId);
 }

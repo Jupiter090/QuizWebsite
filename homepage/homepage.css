@@ -65,7 +65,7 @@ main {
   background: #2a7b9b;
   background: linear-gradient(
     90deg,
-    rgba(42, 123, 155, 1) 0%,
+    rgb(42, 123, 155) 0%,
     rgba(73, 173, 133, 1) 50%,
     rgba(40, 222, 16, 1) 100%
   );
@@ -83,7 +83,6 @@ main {
 .page-title a::after {
   content: "";
   position: absolute;
-  background: red;
   inset: 0;
   background: linear-gradient(
     90deg,
@@ -177,6 +176,26 @@ main {
     rgba(30, 255, 0, 1) 100%
   );
 }
+.page-title .edit-quiz-button {
+  position: relative;
+  width: 100%;
+  background: #003000;
+  background: linear-gradient(90deg, #0bd0d0 0%, #00607a 50%, #002242 100%);
+
+  cursor: pointer;
+}
+.page-title .edit-quiz-button::after {
+  content: "";
+  position: absolute;
+  background: linear-gradient(90deg, #0bd0d0 0%, #00607a 50%, #002242 100%);
+}
+
+.id-form#edit-id-input:focus-within {
+  box-shadow: 0 0 15px #0bd0d0;
+}
+.id-form#edit-id-input input {
+  border: none;
+}
 
 .page-title .not-found-text {
   display: none;
@@ -267,6 +286,9 @@ main {
   color: #bfbfbf;
 }
 
+/*------------------*/
+/*LOADING SCREEN ---*/
+/*------------------*/
 .loading-screen {
   display: none;
   position: fixed;
@@ -352,6 +374,7 @@ main {
 @media (max-width: 600px) {
   .quiz-app {
     flex-direction: column;
+    gap: 2rem;
   }
   .page-title a {
     width: 80%;
