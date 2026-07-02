@@ -134,7 +134,7 @@ async function sendQuiz(quiz) {
 async function sendEditedQuiz(quiz) {
   showMessageBox();
 
-  const editId = new URLSearchParams(window.location.search).get("editId");
+  const editId = new URLSearchParams(window.location.search).get("editid");
   const response = await fetch(
     window.apiIp + "/api/Quiz/editQuiz?editId=" + editId,
     {

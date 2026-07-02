@@ -353,6 +353,7 @@
   }
   .message-box {
     width: 90%;
+    height: 90%;
   }
   .message-box p {
     font-weight: bold;

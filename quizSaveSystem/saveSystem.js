@@ -73,7 +73,7 @@ function createQuizElement(savedQuiz) {
     onDeleteButtonClick(savedQuiz.editId);
   });
   editButton.addEventListener("click", (e) => {
-    link = "/editquiz.html?editId=" + savedQuiz.editId;
+    link = "/editquiz.html?editid=" + savedQuiz.editId;
     window.location.href = link;
   });
 

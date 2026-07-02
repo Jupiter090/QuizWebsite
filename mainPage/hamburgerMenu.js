@@ -4,7 +4,9 @@ function onHamburgerClick() {
   DoHamburgerAnimation(menu.querySelector(".hamburger"));
   if (menu.style.left == "-60%" || menu.style.left == "") {
     menu.style.left = "0%";
-    menu.querySelector("button").style.boxShadow = "0 0 0.5em #0a5dbd";
+    menu
+      .querySelector("button")
+      .style.setProperty("--join-quiz-blur-show", "flex");
     menu
       .querySelector(".create-new-quiz-button")
       .style.setProperty("--join-quiz-blur-show", "flex");

@@ -1,3 +1,3 @@
 function onCreateNewQuiz() {
-  window.location.href = "/";
+  window.location.href = "/createquiz.html";
 }

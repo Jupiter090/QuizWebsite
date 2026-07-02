@@ -141,21 +141,44 @@ nav button {
   border-color: rgb(24, 24, 29);
 }
 .join-quiz button {
-  background: #1c64b6;
-  box-shadow: 0 0 0.5em #0a5dbd;
+  position: relative;
+  background: #003000;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 48, 0, 1) 0%,
+    rgba(9, 121, 15, 1) 50%,
+    rgba(30, 255, 0, 1) 100%
+  );
   width: 100%;
 
   transition:
     background-color 0.3s ease-in-out,
     box-shadow 0.3s ease-in-out;
 }
-.join-quiz button:hover {
-  box-shadow: 0 0 0.75em #0a5dbd;
+.join-quiz button::after {
+  display: var(--join-quiz-blur-show);
+  content: "";
+  position: absolute;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 48, 0, 1) 0%,
+    rgba(9, 121, 15, 1) 50%,
+    rgba(30, 255, 0, 1) 100%
+  );
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
   cursor: pointer;
+
+  filter: blur(5px);
+  transition: filter 0.3s ease-in-out;
 }
-.join-quiz button:active {
-  background: #1f76da;
-  box-shadow: 0 0 1em #0a5dbd;
+.join-quiz button:hover::after {
+  filter: blur(10px);
+}
+.join-quiz button:active::after {
+  filter: blur(15px);
 }
 .join-quiz p.quiz-id-not-found {
   display: none;
@@ -166,7 +189,13 @@ nav button {
 }
 .join-quiz .create-new-quiz-button {
   width: 100%;
-  background: linear-gradient(90deg, #0a5dbd, #0aa8bd, #05c494);
+  background: #2a7b9b;
+  background: linear-gradient(
+    90deg,
+    rgb(42, 123, 155) 0%,
+    rgba(73, 173, 133, 1) 50%,
+    rgba(40, 222, 16, 1) 100%
+  );
   position: relative;
   box-shadow: none;
 
@@ -181,7 +210,13 @@ nav button {
   position: absolute;
   display: var(--join-quiz-blur-show);
   content: "";
-  background: linear-gradient(90deg, #0a5dbd, #0aa8bd, #05c494);
+  background: #2a7b9b;
+  background: linear-gradient(
+    90deg,
+    rgb(42, 123, 155) 0%,
+    rgba(73, 173, 133, 1) 50%,
+    rgba(40, 222, 16, 1) 100%
+  );
   filter: blur(0.5em);
   z-index: -1;
 
@@ -194,7 +229,13 @@ nav button {
   filter: blur(1em);
 }
 .join-quiz .create-new-quiz-button:active {
-  background: linear-gradient(90deg, #0a5dbd, #05c494);
+  background: #2a7b9b;
+  background: linear-gradient(
+    90deg,
+    rgb(42, 123, 155) 0%,
+    rgba(73, 173, 133, 1) 50%,
+    rgba(40, 222, 16, 1) 100%
+  );
   opacity: 100%;
 }
 

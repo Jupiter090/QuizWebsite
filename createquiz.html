@@ -3,15 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quiz Not Found!</title>
-    <link rel="stylesheet" href="quiz/quiz.css" />
+    <link rel="stylesheet" href="mainPage/mainPage.css" />
     <link rel="stylesheet" href="navigation.css" />
     <link rel="stylesheet" href="message/message.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-
+    <title>Create A Quiz</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.png" />
 
     <meta
@@ -27,7 +26,6 @@
       property="og:image"
       content="https://quizwebsite.quizcreator.workers.dev/images/preview.png"
     />
-
     <meta
       property="og:url"
       content="https://quizwebsite.quizcreator.workers.dev"
@@ -49,9 +47,6 @@
         </div>
         <p class="quiz-id-not-found">Quiz with this ID wasn't found!</p>
         <button onclick="onStartQuizButtonClick()">Start Quiz</button>
-        <button class="create-new-quiz-button" onclick="onCreateNewQuiz()">
-          Create new quiz
-        </button>
       </form>
 
       <p class="my-quizes-title">My Quizes</p>
@@ -68,26 +63,44 @@
           No quizes yet :(
         </p>
       </div>
+
+      <button class="publish-button" onclick="onPublishQuizClick()">
+        Publish Quiz
+      </button>
     </nav>
 
-    <main class="quiz-section">
-      <div class="quiz-found">
-        <div class="quiz-information">
-          <h1 class="section-title" id="quiz-title">QuizTitle</h1>
-          <p class="section-subtitle" id="quiz-description">QuizDescription</p>
-        </div>
-        <div class="section" id="question-section">
-          <h1 class="section-title">Questions</h1>
-        </div>
-        <button class="submit-button" onclick="openConfirmationMenu()">
-          Submit
-        </button>
-        <p class="results-text">Result: 90% - 9/10</p>
-        <p class="quiz-id">QuizId</p>
+    <main class="create-quiz-section">
+      <div class="page-title-section">
+        <h1 class="section-title">Create a quiz</h1>
+        <p class="section-subtitle">
+          Give your quiz name, description and add questions.
+        </p>
       </div>
-      <div class="quiz-not-found">
-        <h1>Quiz with an id of #<span id="quizId">ID</span> wasn't found!</h1>
-        <button onclick="window.location.href = '/'">Return home</button>
+
+      <div class="section">
+        <h2 class="section-title">Details</h2>
+        <h3 class="quiz-details-text">Title</h3>
+        <input
+          type="text"
+          id="quizTitle"
+          placeholder="Enter name of your quiz..."
+        />
+
+        <h3 class="quiz-details-text">Description</h3>
+        <input
+          type="text"
+          id="quizDescription"
+          placeholder="(Optional) Describe your quiz..."
+        />
+      </div>
+
+      <div class="section" id="question-section" style="margin-top: 0.25rem">
+        <div class="row">
+          <h2 class="section-title">Questions</h2>
+          <button class="question-button" onclick="createQuestion()">
+            New Question
+          </button>
+        </div>
       </div>
     </main>
 
@@ -98,6 +111,24 @@
         <div id="sending-message" style="display: none">
           <p>Please wait</p>
           <p id="sending-text">Processing your request</p>
+        </div>
+
+        <div id="publish-message" style="display: none">
+          <p>Your quiz was successfully published!</p>
+          <p id="id-text">ID:</p>
+          <p id="edit-id-text">EditID: <b class="red">Do Not Share!</b></p>
+          <p id="link-text">Link:</p>
+          <div class="row row-phone" style="margin-top: 1rem">
+            <button class="copy-link-button" onclick="onCopyLinkClick()">
+              <i class="fa fa-clipboard"></i> Copy link
+            </button>
+            <button class="edit-quiz-button">
+              <i class="fa fa-pencil"></i> Edit quiz
+            </button>
+            <button class="new-quiz-button">
+              <i class="fa fa-plus"></i> New Quiz
+            </button>
+          </div>
         </div>
 
         <div id="delete-message-confirmation" style="display: none">
@@ -137,45 +168,46 @@
       </div>
     </div>
 
-    <div class="message-div" id="confirmation-menu">
-      <div class="message-box">
-        <p class="confirmation-text">
-          Are you sure you want to submit these answers?
-        </p>
-        <div class="row row-phone">
-          <button class="agree-button" onclick="onSubmitAnswersClick()">
-            Continue
-          </button>
-          <button class="reject-button" onclick="closeConfirmationMenu()">
-            Go back
-          </button>
-        </div>
-      </div>
-    </div>
-
     <template id="question-template"
       ><div class="question">
-        <p class="question-title">1. question</p>
-        <div class="answers">
-          <div class="row answer">
-            <input type="radio" class="question-checkbox" id="answer" />
-            <p class="answer-text" id="answer">Answer1</p>
-          </div>
-          <div class="row answer">
-            <input type="radio" class="question-checkbox" id="answer" />
-            <p class="answer-text" id="answer">Answer2</p>
-          </div>
-          <div class="row answer">
-            <input type="radio" class="question-checkbox" id="answer" />
-            <p class="answer-text" id="answer">Answer3</p>
-          </div>
-          <div class="row answer">
-            <input type="radio" class="question-checkbox" id="answer" />
-            <p class="answer-text" id="answer">Answer4</p>
-          </div>
+        <div class="row">
+          <p class="question-title" id="number">1.</p>
+          <input
+            type="text"
+            id="question-title"
+            placeholder="Enter your question..."
+          />
+          <button class="delete-button">X</button>
         </div>
-      </div></template
-    >
+        <div class="row question-answer">
+          <input type="radio" class="question-checkbox" /><input
+            type="text"
+            id="question-answer"
+            placeholder="Enter an answer..."
+          />
+        </div>
+        <div class="row question-answer">
+          <input type="radio" class="question-checkbox" /><input
+            type="text"
+            id="question-answer"
+            placeholder="Enter an answer..."
+          />
+        </div>
+        <div class="row question-answer">
+          <input type="radio" class="question-checkbox" /><input
+            type="text"
+            id="question-answer"
+            placeholder="Enter an answer..."
+          />
+        </div>
+        <div class="row question-answer">
+          <input type="radio" class="question-checkbox" /><input
+            type="text"
+            id="question-answer"
+            placeholder="Enter an answer..."
+          />
+        </div></div
+    ></template>
 
     <template id="my-quizes-container-template">
       <div class="quiz-container">
@@ -204,13 +236,12 @@
 
     <script src="apiIp.js"></script>
     <script src="message/message.js"></script>
-    <script src="navigation/navigationButtons.js"></script>
     <script src="quizSaveSystem/saveSystem.js"></script>
-    <script src="quiz/getQuiz.js"></script>
-    <script src="quiz/answerManager.js" id="answer-manager"></script>
+    <script src="mainPage/questionManager.js"></script>
+    <script src="mainPage/quizSender.js"></script>
     <script src="mainPage/hamburgerMenu.js"></script>
     <script src="navigation/startQuiz.js"></script>
     <script src="navigation/maxLenghtInInput.js"></script>
-    <script src="quiz/submitAnswers.js"></script>
+    <script src="navigation/navigationButtons.js"></script>
   </body>
 </html>

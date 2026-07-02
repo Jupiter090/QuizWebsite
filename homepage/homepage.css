@@ -1,0 +1,385 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  height: 100vh;
+  width: 100%;
+}
+body {
+  margin: 0;
+  min-height: 100%;
+  height: 100%;
+  width: 100%;
+  background: #000d04;
+  background: radial-gradient(
+    circle,
+    rgba(0, 13, 4, 1) 0%,
+    rgba(0, 0, 0, 1) 29%,
+    rgba(0, 13, 4, 1) 61%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  color: white;
+  font-family: Roboto;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+::selection {
+  background-color: #004400;
+}
+
+.page-title {
+  width: auto;
+  margin: 0.5rem;
+  margin-bottom: 0;
+  border-radius: 5px;
+  background: rgba(24, 24, 24, 0.133);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+
+  backdrop-filter: blur(20px);
+}
+
+.page-title h1 {
+  color: #0aca0a;
+  text-shadow: 0 0 20px #0aca0a75;
+  font-size: 5rem;
+  margin-bottom: 0;
+}
+.page-title h2 {
+  margin-top: 0;
+  color: #969696;
+}
+.page-title a {
+  display: flex;
+  position: relative;
+  background: #2a7b9b;
+  background: linear-gradient(
+    90deg,
+    rgb(42, 123, 155) 0%,
+    rgba(73, 173, 133, 1) 50%,
+    rgba(40, 222, 16, 1) 100%
+  );
+  padding: 0.5em;
+  width: 20%;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 0.5rem;
+
+  font-size: 1.5rem;
+  color: white;
+  text-decoration: none;
+}
+.page-title a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(42, 123, 155, 1) 0%,
+    rgba(73, 173, 133, 1) 50%,
+    rgba(40, 222, 16, 1) 100%
+  );
+  z-index: -1;
+  filter: blur(10px);
+
+  transition: filter 0.3s ease-in-out;
+}
+.page-title a:hover::after {
+  filter: blur(15px);
+}
+.page-title a:active::after {
+  filter: blur(20px);
+}
+
+.page-title form p {
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 0;
+  margin: 0;
+}
+
+.page-title form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 0.4rem;
+  width: 20%;
+}
+.id-form {
+  display: flex;
+
+  background-color: #1d1d1d;
+
+  height: 2.5rem;
+  width: clamp(10px, 15rem, 800px);
+  border-radius: 0.5rem;
+  transition: box-shadow 0.3s ease-in-out;
+  margin: 0.5rem;
+}
+.id-form input {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  box-shadow: none;
+  width: 85%;
+
+  border-left: solid 3px #1a1a1a;
+}
+.id-form p {
+  display: flex;
+  font-weight: bold;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  width: 15%;
+}
+.id-form:focus-within {
+  box-shadow: 0 0 15px #0aca0a;
+}
+.id-form input:focus {
+  background: none;
+  outline: none;
+}
+
+.page-title .start-quiz-button {
+  width: 100%;
+  background: #003000;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 48, 0, 1) 0%,
+    rgba(9, 121, 15, 1) 50%,
+    rgba(30, 255, 0, 1) 100%
+  );
+
+  cursor: pointer;
+}
+
+.page-title .start-quiz-button::after {
+  background: #003000;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 48, 0, 1) 0%,
+    rgba(9, 121, 15, 1) 50%,
+    rgba(30, 255, 0, 1) 100%
+  );
+}
+.page-title .edit-quiz-button {
+  position: relative;
+  width: 100%;
+  background: #003000;
+  background: linear-gradient(90deg, #0bd0d0 0%, #00607a 50%, #002242 100%);
+
+  cursor: pointer;
+}
+.page-title .edit-quiz-button::after {
+  content: "";
+  position: absolute;
+  background: linear-gradient(90deg, #0bd0d0 0%, #00607a 50%, #002242 100%);
+}
+
+.id-form#edit-id-input:focus-within {
+  box-shadow: 0 0 15px #0bd0d0;
+}
+.id-form#edit-id-input input {
+  border: none;
+}
+
+.page-title .not-found-text {
+  display: none;
+  color: #f42b2b;
+  font-size: 1rem;
+  margin-top: 0;
+  align-self: flex-start;
+}
+
+.quiz-app {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.features {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  backdrop-filter: brightness(75%);
+
+  padding: 2rem;
+  padding-top: 0;
+  margin: 0;
+}
+.features h2 {
+  font-size: 3rem;
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #0aca0a;
+  text-shadow: 0 0 20px #0aca0a75;
+}
+.features p {
+  color: #bfbfbf;
+}
+.features-list {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  flex: 1;
+}
+.feature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+
+  width: clamp(150px, 250px, 450px);
+  height: 300px;
+  background-color: #001302;
+
+  border-radius: 5px;
+  overflow: hidden;
+
+  transition:
+    transform 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out;
+}
+
+.feature img {
+  width: 100%;
+  aspect-ratio: 21/10;
+  filter: blur(2px);
+
+  transition: filter 0.3s ease-in-out;
+}
+
+.feature:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px #003000;
+}
+
+.feature:hover img {
+  filter: none;
+}
+
+.feature h3 {
+  margin: 0.5rem 0 0 0.5rem;
+  align-self: start;
+}
+
+.feature p {
+  margin: 0.5rem 0 0 0.5rem;
+  color: #bfbfbf;
+}
+
+/*------------------*/
+/*LOADING SCREEN ---*/
+/*------------------*/
+.loading-screen {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  backdrop-filter: blur(5px);
+  backdrop-filter: brightness(50%);
+  z-index: 10;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-box {
+  display: flex;
+  width: 80%;
+  height: 90%;
+  background-color: #0c0c0c;
+  flex-direction: column;
+
+  justify-content: space-evenly;
+
+  align-items: center;
+  border-radius: 5px;
+}
+
+#loading-animation {
+  position: absolute;
+  left: 25%;
+  top: 25%;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+
+  background: #6d6d6d;
+  font-size: 5rem;
+
+  animation: loadingAnimation 3s cubic-bezier(0.78, 0.01, 0.25, 1.01) infinite;
+}
+.loading-box h2 {
+  color: #6d6d6d;
+  font-size: clamp(10px, 50px, 75px);
+  text-align: centers;
+}
+.loading-box h2::after {
+  content: "";
+  animation: dotAnimation 3s infinite;
+}
+@keyframes loadingAnimation {
+  from {
+    left: 25%;
+  }
+  50% {
+    left: 75%;
+  }
+  to {
+    left: 25%;
+  }
+}
+
+@keyframes dotAnimation {
+  0%,
+  25% {
+    content: "";
+  }
+  26%,
+  50% {
+    content: ".";
+  }
+  51%,
+  75% {
+    content: "..";
+  }
+  76%,
+  100% {
+    content: "...";
+  }
+}
+
+@media (max-width: 600px) {
+  .quiz-app {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .page-title a {
+    width: 80%;
+  }
+  .page-title form {
+    width: 80%;
+  }
+}
